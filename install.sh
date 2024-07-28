@@ -7,6 +7,8 @@ sudo apt-get update && sudo apt-get upgrade -y
 # Install dependencies
 sudo apt-get install -y build-essential python3 python3-tk git cmake ninja-build libgtk-3-dev
 
+chmod +x install.sh makecode.sh compile-c.sh
+
 # Clone WebKitGTK
 git clone https://github.com/WebKit/WebKit.git
 cd WebKit

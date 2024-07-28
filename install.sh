@@ -4,21 +4,15 @@
 # Update package list and upgrade existing packages
 sudo apt-get update && sudo apt-get upgrade -y
 
-# Add necessary repositories
-sudo add-apt-repository universe
-sudo add-apt-repository multiverse
-sudo add-apt-repository restricted
+# Install dependencies
+sudo apt-get install -y build-essential python3 python3-tk git cmake ninja-build libgtk-3-dev
 
-# Update package list again
-sudo apt-get update
+# Clone WebKitGTK
+git clone https://github.com/WebKit/WebKit.git
+cd WebKit
 
-# Install dependencies including Flatpak
-sudo apt-get install -y build-essential python3 python3-tk flatpak
+# Install additional dependencies for WebKitGTK
+Tools/Scripts/update-webkitgtk-libs
 
-# Add the Flathub repository
-sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-# Install WebKitGTK via Flatpak
-sudo flatpak install flathub org.webkit.WebKitGtk -y
-
-chmod +x install.sh make-code.sh compile-c-code.sh
+# Build WebKitGTK
+Tools/Scripts/build-webkit --gtk

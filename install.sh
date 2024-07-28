@@ -5,7 +5,9 @@
 sudo apt-get update && sudo apt-get upgrade -y
 
 # Add necessary repositories
-sudo add-apt-repository universe && sudo add-apt-repository multiverse && sudo add-apt-repository restricted
+sudo add-apt-repository universe
+sudo add-apt-repository multiverse
+sudo add-apt-repository restricted
 
 # Update package list again
 sudo apt-get update

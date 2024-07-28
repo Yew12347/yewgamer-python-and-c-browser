@@ -1,17 +1,9 @@
-# Update package list and upgrade existing packages
-sudo apt-get update && sudo apt-get upgrade -y
-
-# Add necessary repositories
-sudo add-apt-repository universe && sudo add-apt-repository multiverse && sudo add-apt-repository restricted
-
-# Update package list again
-sudo apt-get update
-
-# Install dependencies
-sudo apt-get install -y libwebkit2gtk-4.0-dev build-essential python3 python3-tk
+# make-code.sh
+#!/bin/bash
 
 # Create engine.c
-echo '#include <webkit2/webkit2.h>
+cat << 'EOF' > engine.c
+#include <webkit2/webkit2.h>
 #include <gtk/gtk.h>
 
 // Function to initialize GTK and WebKit
@@ -27,13 +19,12 @@ void start_browser(const char* url) {
 
     gtk_widget_show_all(window);
     gtk_main();
-}' > engine.c
+}
+EOF
 
-# Compile engine.c into a shared library
-gcc -shared -o libwebkit_browser.so -fPIC engine.c `pkg-config --cflags --libs webkit2gtk-4.0`
-
-# Create browser_gui.py
-echo 'import tkinter as tk
+# Create main.py
+cat << 'EOF' > main.py
+import tkinter as tk
 from tkinter import simpledialog
 import ctypes
 
@@ -59,4 +50,5 @@ button = tk.Button(root, text="Open Browser", command=open_browser)
 button.pack(pady=20)
 
 # Run the Tkinter main loop
-root.mainloop()' > browser_gui.py
+root.mainloop()
+EOF

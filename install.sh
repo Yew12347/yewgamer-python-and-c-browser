@@ -20,3 +20,5 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 
 # Install WebKitGTK via Flatpak
 sudo flatpak install flathub org.webkit.WebKitGtk -y
+
+chmod +x install.sh make-code.sh compile-c-code.sh
